@@ -8,14 +8,19 @@ services:
       - ./mysql/db:/docker-entrypoint-initdb.d
     environment:
       - MYSQL_ROOT_PASSWORD=root 
+    ports:
+      - 3306:3306
+    
       
   api:
+    #links: 
+    #  -mysql
     build:
      context: ./mysql
      dockerfile: Dockerfile
     
     volumes:
-     - ./src:/go/src
+     - ./src:/TechDoJo
     
     #restart: always
     tty: true

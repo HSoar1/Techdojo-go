@@ -4,6 +4,8 @@ FROM golang:1.14-alpine
 
 EXPOSE 8080
 
-WORKDIR ./src
+ENV GO111MODULE=on
+
+WORKDIR /TechDoJo
 
 #CMD[""]
