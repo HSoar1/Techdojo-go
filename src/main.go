@@ -7,40 +7,36 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
+type user struct{
+	ID int
+	Name string
+	Token string
+}
+
 func main(){
-	db, err := sql.Open("mysql", "root:@/dojo_api_1")
-	if err != nil{
+	db, err := sql.Open("mysql", "root:rootpass@tcp(dojo_mysql_1:3306)/api_database")
+	if err != nil {
 		panic(err.Error())
 	}
 	defer db.Close()
 
 	rows, err := db.Query("SELECT * FROM users")
-	if err != nil{
+	if err != nil {
 		panic(err.Error())
 	}
-
-	values := make([]sql.RawBytes, len(columns))
-
-	scanArgs := make([]interface{}, len(values))
-	for i := range values{
-		scanArgs[i] = &values[i];
-	}
+	defer rows.Close()
 
 	for rows.Next(){
-		err = rows.Scan(ScanArgs...)
-		if err != nil{
+		var user user
+		err := rows.Scan(&user.ID, &user.Name, &user.Token)
+		if err != nil {
 			panic(err.Error())
 		}
+		fmt.Println(user.ID, user.Name, user.Token)
+	}
 
-		var value String
-		for i, col := range values{
-			if col == nil {
-				value = "NULL"
-			} else {
-				value = string(col)
-			}
-			fmt.Println(columns[i], ": ", value)
-		}
-		fmt.Println("----------------------------------------")
+	err = rows.Err()
+	if err != nil {
+		panic(err.Error())
 	}
 }
