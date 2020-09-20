@@ -1,4 +1,4 @@
-package main
+package handler
 
 import (
 	"database/sql"
@@ -9,13 +9,14 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-type user struct{
+/*type user struct{
 	ID int
 	Name string
 	Token string
 }
+*/
 
-func main(){
+func UpdateHandler(){
 	db, err := sql.Open("mysql", "root:rootpass@tcp(dojo_mysql_1:3306)/api_database")
 	if err != nil {
 		panic(err.Error())

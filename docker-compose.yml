@@ -28,4 +28,6 @@ services:
     tty: true
     environment:
       - MYSQL_ROOT_PASSWORD=Root
+    ports:
+    - 8080:8080
   
