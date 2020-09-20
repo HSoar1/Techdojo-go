@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"fmt"
 	"net/http"
-	//"log"
 	_ "github.com/go-sql-driver/mysql"
 	"encoding/json"
 
