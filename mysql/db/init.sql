@@ -8,3 +8,4 @@ CREATE TABLE users (
 
 
 INSERT INTO users (id, username, token) VALUES ( 1, 'soar' , 'soarstoken');
+INSERT INTO users (id, username, token) VALUES ( 2, 'shizuku' , 'shizukustoken');
